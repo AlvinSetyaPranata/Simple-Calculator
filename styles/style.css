@@ -1,0 +1,116 @@
+:root {
+    --button-font-size: 18px;
+    --current-display-size: 3rem;
+    --last-display-size: 26px;
+    --p-size: 1rem;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    /* border: 1px solid lime; */
+}
+
+
+
+.container {
+    min-height: 100vh;
+    max-width: 100vw;
+    /* width: 100%; */
+    display: flex;
+    /* overflow: hidden; */
+}
+
+
+.container .buttons-wrapper {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2px;
+    padding: 20px;
+}
+
+
+.container .buttons-wrapper button {
+    padding: 0 3em;
+    outline: none;
+}
+
+#zero {
+    grid-column: span 2;
+}
+
+/* Display styles */
+
+.container .display-wrapper {
+    border-left: 1px solid grey;
+    max-width: 100%;
+    flex: 1 1 0%;
+    padding: 10px;
+}
+
+
+.container .display-wrapper .display-numbers {
+    display: flex;
+    column-gap: 10px;
+    height: max-content;
+}
+
+
+.container .display-wrapper .display-numbers .numbers-area {
+    font-size: var(--current-display-size);
+    flex: 1 1 0%;
+    max-width: 92%;
+    border: none;
+    outline: none;
+}
+
+.container .display-wrapper .display-numbers .operator-area {
+    /* width: max-content; */
+    background-color: greenyellow;
+    padding: 0 10px;
+    display: grid;
+    place-items: center;
+}
+
+
+.container .display-wrapper p {
+    font-size: var(--p-size);
+    color: grey;
+    margin-top: 20px;
+}
+
+
+.container .display-wrapper .histories-wrapper *{
+    margin-top: 10px;    
+    /* border: 1px solid lime; */
+}
+
+.container .display-wrapper .histories-wrapper .operation-area {
+    padding: 0.7em;
+    border: 1px solid grey;
+    height: 100%;
+    display: flex;
+    align-items: center;
+}
+
+.histories-wrapper .operation-area .result {
+    display: flex;
+    flex: 1 1 0%;
+    flex-direction: column;
+    justify-content: center;
+    margin: auto 0;
+}
+
+
+.histories-wrapper .operation-area .result p:first-child,
+.histories-wrapper .operation-area .operation-date p:first-child 
+{
+    font-size: var(--last-display-size);
+}
+
+.histories-wrapper .operation-area .operation-date {
+    margin: auto 0;
+    /* border: 1px solid lawngreen; */
+    text-align: center;
+}
