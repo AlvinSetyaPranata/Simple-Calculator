@@ -1,8 +1,9 @@
 :root {
-    --button-font-size: 18px;
+    --button-font-size: 1rem;
     --current-display-size: 3rem;
     --last-display-size: 26px;
     --p-size: 1rem;
+    --result-size: 1.2rem
 }
 
 * {
@@ -34,6 +35,7 @@
 .container .buttons-wrapper button {
     padding: 0 3em;
     outline: none;
+    font-size: var(--button-font-size);
 }
 
 #zero {
@@ -46,7 +48,7 @@
     border-left: 1px solid grey;
     max-width: 100%;
     flex: 1 1 0%;
-    padding: 10px;
+    padding: 10px 12px;
 }
 
 
@@ -73,11 +75,16 @@
     place-items: center;
 }
 
+.container .display-wrapper .result-area {
+    border: none;
+    font-size: var(--result-size);
+    color: grey
+}
+
 
 .container .display-wrapper p {
     font-size: var(--p-size);
-    color: grey;
-    margin-top: 20px;
+    margin-top: 50px;
 }
 
 

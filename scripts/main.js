@@ -1,5 +1,6 @@
 const btnWrappers = document.getElementById("button-group")
 const displayNumbers = document.getElementById("numbers-area")
+const displayResult = document.getElementById("result-area")
 const operator = document.getElementById("operator")
 
 
@@ -13,31 +14,36 @@ const operations = {
         firstOperand += lastOperand
         lastOperand = 0
         operator.innerHTML = "+"
+        displayNumbers.value = ""
     },
     sub: () => {
         operation = "sub"
         firstOperand -= lastOperand
         lastOperand = 0
         operator.innerHTML = "-"
+        displayNumbers.value = ""
     },
     mul: () => {
         operation = "mul"
         firstOperand *= lastOperand
         lastOperand = 0
         operator.innerHTML = "X"
+        displayNumbers.value = ""
     },
     div: () => {
         operation = "div"
         firstOperand /= lastOperand
         lastOperand = 0
         operator.innerHTML = "&#247"
+        displayNumbers.value = ""
     },
     clear: () => {
-        displayNumbers.value = ''
-        result = 0
+        displayNumbers.value = ""
+        lastOperand = 0
+        firstOperand = 0
     },
-    inverse: () => result = result * -1,
-    decimal: () => result *= 0.1
+    inverse: () => firstOperand ? firstOperand *= -1 : lastOperand = lastOperand *= -1,
+    decimal: () => firstOperand ? firstOperand *= 0.1 : lastOperand *= 0.1
 }
 
 
@@ -45,37 +51,39 @@ const operations = {
 
 Array.from(btnWrappers.children).forEach(child => {
     child.addEventListener('click', (event) => {
-        const value = event.target.id
+        const value = event.target.id == "zero" ?  0 : event.target.id
 
         // if number added to display and set as result 
-        if (!isNaN(value)) {
+        if (!isNaN(value) || value == "zero") {
             displayNumbers.value = displayNumbers.value.concat(value)
-            result = value
+            lastOperand = parseInt(displayNumbers.value)
             return
         } 
         else if (value == ".") {
             if (displayNumbers.value.includes(".")) return
-
+            
             displayNumbers.value = displayNumbers.value.concat(value)
-            result = value
+            lastOperand = parseInt(displayNumbers.value)
             return
         } 
         else if (value == "res") {
             switch(operation) {
                 case "add":
-                    result = firstOperand + lastOperand
+                    firstOperand += lastOperand
                     break
                 case "sub":
-                    result = firstOperand - lastOperand
+                    firstOperand -= lastOperand
                     break
                 case "mul":
-                    result = firstOperand * lastOperand
+                    firstOperand *= lastOperand
                     break
                 case "div":
-                    result = firstOperand / lastOperand
+                    firstOperand /= lastOperand
                     break
 
             }
+            lastOperand = 0
+            displayResult.value = firstOperand
             return
         }
 
