@@ -48,8 +48,6 @@ const operations = {
 }
 
 
-
-
 Array.from(btnWrappers.children).forEach(child => {
     child.addEventListener('click', (event) => {
         const value = event.target.id == "zero" ?  0 : event.target.id
@@ -71,7 +69,7 @@ Array.from(btnWrappers.children).forEach(child => {
             return
         } 
         else if (value == "res") {
-            let oldFirstOperand = firstOperand
+            const oldFirstOperand = firstOperand
 
             switch(operation) {
                 case "add":
