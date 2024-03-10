@@ -40,8 +40,8 @@ const operations = {
     clear: () => {
         displayNumbers.value = ""
         displayResult.value = ""
-        lastOperand = 0
-        firstOperand = 0
+        lastOperand = null
+        firstOperand = null
     },
     inverse: () => firstOperand ? firstOperand *= -1 : lastOperand = lastOperand *= -1,
     decimal: () => firstOperand ? firstOperand *= 0.1 : lastOperand *= 0.1
