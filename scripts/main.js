@@ -4,41 +4,42 @@ const displayResult = document.getElementById("result-area")
 const operator = document.getElementById("operator")
 
 
-let firstOperand = 0
-let lastOperand = 0
+let firstOperand = null
+let lastOperand = null
 let operation = ""
 
 const operations = {
     add: () => {
         operation = "add"
-        firstOperand += lastOperand
+        firstOperand = firstOperand==null ? lastOperand : firstOperand + lastOperand
         lastOperand = 0
         operator.innerHTML = "+"
         displayNumbers.value = ""
     },
     sub: () => {
         operation = "sub"
-        firstOperand -= lastOperand
+        firstOperand = firstOperand==null ? lastOperand : firstOperand - lastOperand
         lastOperand = 0
         operator.innerHTML = "-"
         displayNumbers.value = ""
     },
     mul: () => {
         operation = "mul"
-        firstOperand *= lastOperand
+        firstOperand = firstOperand==null ? lastOperand : firstOperand * lastOperand
         lastOperand = 0
         operator.innerHTML = "X"
         displayNumbers.value = ""
     },
     div: () => {
         operation = "div"
-        firstOperand /= lastOperand
+        firstOperand = firstOperand==null ? lastOperand : firstOperand / lastOperand
         lastOperand = 0
         operator.innerHTML = "&#247"
         displayNumbers.value = ""
     },
     clear: () => {
         displayNumbers.value = ""
+        displayResult.value = ""
         lastOperand = 0
         firstOperand = 0
     },
@@ -56,17 +57,22 @@ Array.from(btnWrappers.children).forEach(child => {
         // if number added to display and set as result 
         if (!isNaN(value) || value == "zero") {
             displayNumbers.value = displayNumbers.value.concat(value)
-            lastOperand = parseInt(displayNumbers.value)
+            const valueInt = displayNumbers.value.includes(".") ?  parseFloat(displayNumbers.value) : parseInt(displayNumbers.value)
+            
+            lastOperand = valueInt
+            
             return
         } 
         else if (value == ".") {
             if (displayNumbers.value.includes(".")) return
             
             displayNumbers.value = displayNumbers.value.concat(value)
-            lastOperand = parseInt(displayNumbers.value)
+            lastOperand = parseFloat(displayNumbers.value)
             return
         } 
         else if (value == "res") {
+            let oldFirstOperand = firstOperand
+
             switch(operation) {
                 case "add":
                     firstOperand += lastOperand
@@ -82,12 +88,14 @@ Array.from(btnWrappers.children).forEach(child => {
                     break
 
             }
+            // Cleanup and push current operation to history
+            store(oldFirstOperand, lastOperand,  firstOperand, operator.innerText)
             lastOperand = 0
             displayResult.value = firstOperand
             return
         }
 
         // Call defined operation to perform
-        result = operations[value]()
+        operations[value]()
     })
 })
