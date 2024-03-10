@@ -17,10 +17,9 @@
 
 .container {
     min-height: 100vh;
-    max-width: 100vw;
-    /* width: 100%; */
+    width: 100%;
     display: flex;
-    /* overflow: hidden; */
+    overflow: hidden;
 }
 
 
@@ -70,28 +69,24 @@
 .container .display-wrapper .display-numbers .operator-area {
     width: 50px;
     height: 50px;
-    background-color: greenyellow;
     display: grid;
     place-items: center;
+    font-size: var(--p-size );
 }
 
 .container .display-wrapper .result-area {
     border: none;
     font-size: var(--result-size);
-    color: grey
+    color: grey;
+    width: 92%;
 }
 
 
 .container .display-wrapper p {
     font-size: var(--p-size);
-    margin-top: 50px;
+    margin-top: 10px;
 }
 
-
-.container .display-wrapper .histories-wrapper *{
-    margin-top: 10px;    
-    /* border: 1px solid lime; */
-}
 
 .container .display-wrapper .histories-wrapper .operation-area {
     padding: 0.7em;
@@ -99,6 +94,8 @@
     display: flex;
     align-items: center;
 }
+
+
 
 .histories-wrapper .operation-area .result {
     display: flex;
@@ -119,4 +116,45 @@
     margin: auto 0;
     /* border: 1px solid lawngreen; */
     text-align: center;
+}
+
+
+
+@media (max-width: 720px) {
+    :root {
+        --button-font-size: 1rem;
+        --current-display-size: 2.5rem;
+        --last-display-size: 1.5rem;
+        --p-size: 0.9rem;
+        --result-size: 1.2rem
+    }
+
+    .container {
+        flex-direction: column-reverse;
+    }
+
+    .container .buttons-wrapper {
+        flex: 1 1 0%;
+        padding: 10px;
+    }
+
+    .container .buttons-wrapper button{
+        padding: 0;
+    }
+
+    .container .buttons-wrapper #viewHistory {
+        grid-column: span 4;
+        background-color: white;
+        border: none;
+        font-size: 14px;
+    }
+
+
+
+    .container .display-wrapper {
+        padding: 10px 10px;
+        max-height: 50vh;
+        overflow: auto;
+    }
+    
 }

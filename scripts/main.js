@@ -27,7 +27,7 @@ const operations = {
         operation = "mul"
         firstOperand = firstOperand==null ? lastOperand : firstOperand * lastOperand
         lastOperand = 0
-        operator.innerHTML = "X"
+        operator.innerHTML = "x"
         displayNumbers.value = ""
     },
     div: () => {
@@ -97,3 +97,14 @@ Array.from(btnWrappers.children).forEach(child => {
         operations[value]()
     })
 })
+
+
+
+// Load whenever there are history in localstorage
+const histories = localStorage.getItem("sc-history")
+
+if (histories) {
+    JSON.parse(histories).forEach(history => {
+        updateHistory(history)
+    })
+}
