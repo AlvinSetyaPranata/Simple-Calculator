@@ -57,4 +57,3 @@ function store(firstOperand, lastOperand, result, operator) {
     updateHistory(data)
 }
 
-

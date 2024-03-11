@@ -5,8 +5,12 @@ const operator = document.getElementById("operator")
 const viewHistoryElement = document.getElementById("viewHistory")
 
 
-displayNumbers.value = ''
-displayResult.value = ''
+
+window.addEventListener('DOMContentLoaded', () => {
+    displayNumbers.value = ''
+    displayResult.value = ''
+})
+
 
 let firstOperand = null
 let lastOperand = null
@@ -63,8 +67,9 @@ Array.from(btnWrappers.children).forEach(child => {
 
         // if number added to display and set as result 
         if (!isNaN(value) || value == "zero") {
-            // console.log(displayNumbers.selectionStart)
-            displayNumbers.value = displayNumbers.value.slice(displayNumbers.selectionStart+1, -1) + value
+            const before = displayNumbers.value.slice(0, displayNumbers.selectionStart)
+            const after = displayNumbers.value.slice(displayNumbers.selectionStart)
+            displayNumbers.value = before.concat(value, after)
             const valueInt = displayNumbers.value.includes(".") ?  parseFloat(displayNumbers.value) : parseInt(displayNumbers.value)
             
             lastOperand = valueInt
@@ -72,9 +77,13 @@ Array.from(btnWrappers.children).forEach(child => {
             return
         } 
         else if (value == ".") {
-            if (displayNumbers.value.includes(".")) return
+            const before = displayNumbers.value.slice(0, displayNumbers.selectionStart)
+            const after = displayNumbers.value.slice(displayNumbers.selectionStart)
             
-            displayNumbers.value = displayNumbers.value.concat(value)
+            if (displayNumbers.value.includes(".")) return
+            if (before.length < 1) return
+            
+            displayNumbers.value = before.concat(value, after)
             lastOperand = parseFloat(displayNumbers.value)
             return
         } 
@@ -99,7 +108,9 @@ Array.from(btnWrappers.children).forEach(child => {
             // Cleanup and push current operation to history
             store(oldFirstOperand, lastOperand,  firstOperand, operator.innerText)
             displayResult.value = firstOperand
-            operations.clear()
+            displayNumbers.value = ""
+            firstOperand = null
+            lastOperand = null
             return
         }
 

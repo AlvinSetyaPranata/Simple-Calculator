@@ -14,7 +14,9 @@
     /* border: 1px solid lime; */
 }
 
-
+input:hover {
+    cursor: nore;
+}
 
 .container {
     min-height: 100vh;
@@ -162,7 +164,7 @@
     }
 
     .container .buttons-wrapper.closed {
-        bottom: -340px;
+        bottom: -360px;
         transition: bottom 300ms ease-in;
     }
 
