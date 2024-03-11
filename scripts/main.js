@@ -5,6 +5,9 @@ const operator = document.getElementById("operator")
 const viewHistoryElement = document.getElementById("viewHistory")
 
 
+displayNumbers.value = ''
+displayResult.value = ''
+
 let firstOperand = null
 let lastOperand = null
 let operation = ""
@@ -37,6 +40,11 @@ const operations = {
         lastOperand = 0
         operator.innerHTML = "&#247"
         displayNumbers.value = ""
+    },
+    negate: () => {
+        lastOperand = lastOperand==null ? lastOperand : lastOperand * -1
+        displayNumbers.value = lastOperand
+        console.log(lastOperand);
     },
     clear: () => {
         displayNumbers.value = ""
