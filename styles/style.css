@@ -161,7 +161,7 @@ input:hover {
     }
 
     .container .buttons-wrapper.closed {
-        bottom: -360px;
+        bottom: -340px;
         transition: bottom 300ms ease-in;
     }
 
