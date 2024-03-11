@@ -10,6 +10,7 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    overflow: hidden;
     /* border: 1px solid lime; */
 }
 
@@ -28,6 +29,7 @@
     grid-template-columns: repeat(4, 1fr);
     gap: 2px;
     padding: 20px;
+    background-color: white;
 }
 
 
@@ -35,6 +37,10 @@
     padding: 0 3em;
     outline: none;
     font-size: var(--button-font-size);
+}
+
+.container .buttons-wrapper #viewHistory {
+    display: none;
 }
 
 #zero {
@@ -79,14 +85,20 @@
     font-size: var(--result-size);
     color: grey;
     width: 92%;
+    outline: none;
 }
 
 
-.container .display-wrapper p {
+.container .display-wrapper > p {
     font-size: var(--p-size);
-    margin-top: 10px;
+    margin-top: 50px;
+    margin-bottom: 20px;
 }
 
+.container .display-wrapper .histories-wrapper {
+    display: grid;
+    row-gap: 20px;
+}
 
 .container .display-wrapper .histories-wrapper .operation-area {
     padding: 0.7em;
@@ -110,6 +122,7 @@
 .histories-wrapper .operation-area .operation-date p:first-child 
 {
     font-size: var(--last-display-size);
+    margin-bottom: 15px;
 }
 
 .histories-wrapper .operation-area .operation-date {
@@ -136,25 +149,43 @@
     .container .buttons-wrapper {
         flex: 1 1 0%;
         padding: 10px;
+        position: fixed;
+        bottom: 0;
+        width: 100%;
+        height: 50%;
+        transition: bottom 300ms ease-out;
     }
 
+    .container .buttons-wrapper.closed {
+        bottom: -340px;
+        transition: bottom 300ms ease-in;
+    }
+
+    
     .container .buttons-wrapper button{
         padding: 0;
     }
-
+    
     .container .buttons-wrapper #viewHistory {
+        display: block;
         grid-column: span 4;
         background-color: white;
         border: none;
         font-size: 14px;
     }
 
-
-
+    
+    
     .container .display-wrapper {
+        flex: 1 1 0%;
         padding: 10px 10px;
-        max-height: 50vh;
+        /* max-height: 50vh; */
         overflow: auto;
+    }
+
+
+    .container .display-wrapper:nth-child(2) > p {
+        margin-top: 10px;
     }
     
 }

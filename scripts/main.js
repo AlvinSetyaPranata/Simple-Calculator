@@ -2,6 +2,7 @@ const btnWrappers = document.getElementById("button-group")
 const displayNumbers = document.getElementById("numbers-area")
 const displayResult = document.getElementById("result-area")
 const operator = document.getElementById("operator")
+const viewHistoryElement = document.getElementById("viewHistory")
 
 
 let firstOperand = null
@@ -88,14 +89,18 @@ Array.from(btnWrappers.children).forEach(child => {
             }
             // Cleanup and push current operation to history
             store(oldFirstOperand, lastOperand,  firstOperand, operator.innerText)
-            lastOperand = 0
             displayResult.value = firstOperand
+            operations.clear()
             return
         }
 
         // Call defined operation to perform
         operations[value]()
     })
+})
+
+viewHistoryElement.addEventListener('click', () => {
+    btnWrappers.classList.toggle("closed")
 })
 
 
