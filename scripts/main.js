@@ -56,6 +56,13 @@ const operations = {
         lastOperand = null
         firstOperand = null
     },
+    backspace: () => {
+        const before = displayNumbers.value.slice(0, displayNumbers.selectionStart - 1)
+        const after = displayNumbers.value.slice(displayNumbers.selectionStart)
+        displayNumbers.value = before.concat(after)
+        displayNumbers.focus()
+        displayNumbers.setSelectionRange(displayNumbers.selectionStart -1, displayNumbers.selectionStart-1)
+    },
     inverse: () => firstOperand ? firstOperand *= -1 : lastOperand = lastOperand *= -1,
     decimal: () => firstOperand ? firstOperand *= 0.1 : lastOperand *= 0.1
 }
@@ -139,3 +146,14 @@ if (histories) {
 displayNumbers.addEventListener("keypress", (event) => {
     event.preventDefault()
 })
+
+displayNumbers.addEventListener("click", (event) => {
+    navigator.clipboard.writeText(event.target.value)
+    alert("Text Copied")
+})
+
+displayResult.addEventListener("click", (event) => {
+    navigator.clipboard.writeText(event.target.value)
+    alert("Text Copied")
+})
+
