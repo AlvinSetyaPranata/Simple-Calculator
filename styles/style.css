@@ -165,6 +165,16 @@ input:hover {
         transition: bottom 300ms ease-in;
     }
 
+
+    .container .buttons-wrapper svg {
+        transition: transform 300ms ease-out;
+    }
+    
+    .container .buttons-wrapper.closed svg {
+        transform: rotate(180deg);
+        transition: transform 300ms ease-in;
+    } 
+
     
     .container .buttons-wrapper button{
         padding: 0;
