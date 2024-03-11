@@ -63,7 +63,8 @@ Array.from(btnWrappers.children).forEach(child => {
 
         // if number added to display and set as result 
         if (!isNaN(value) || value == "zero") {
-            displayNumbers.value = displayNumbers.value.concat(value)
+            // console.log(displayNumbers.selectionStart)
+            displayNumbers.value = displayNumbers.value.slice(displayNumbers.selectionStart+1, -1) + value
             const valueInt = displayNumbers.value.includes(".") ?  parseFloat(displayNumbers.value) : parseInt(displayNumbers.value)
             
             lastOperand = valueInt
@@ -121,3 +122,9 @@ if (histories) {
         updateHistory(history)
     })
 }
+
+
+// Add listener into a display numbers to prevent keyboard typing
+displayNumbers.addEventListener("keypress", (event) => {
+    event.preventDefault()
+})

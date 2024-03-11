@@ -100,6 +100,7 @@
     overflow-y: auto;
     /* background-color: red; */
     max-height: 100%;
+    padding: 0 20px;
     padding-bottom: 50px;
 }
 
@@ -145,6 +146,7 @@
         --result-size: 1.2rem
     }
 
+
     .container {
         flex-direction: column-reverse;
     }
@@ -167,6 +169,11 @@
     
     .container .buttons-wrapper button{
         padding: 0;
+    }
+
+    .container .buttons-wrapper button svg{
+        width: 20px;
+        height: 20px;
     }
     
     .container .buttons-wrapper #viewHistory {
