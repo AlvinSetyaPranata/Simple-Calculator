@@ -5,13 +5,6 @@ const operator = document.getElementById("operator")
 const viewHistoryElement = document.getElementById("viewHistory")
 
 
-
-window.addEventListener('DOMContentLoaded', () => {
-    displayNumbers.value = ''
-    displayResult.value = ''
-})
-
-
 let firstOperand = null
 let lastOperand = null
 let operation = ""
@@ -142,7 +135,13 @@ if (histories) {
 }
 
 
-// Add listener into a display numbers to prevent keyboard typing
+
+window.addEventListener('DOMContentLoaded', () => {
+    displayNumbers.value = ''
+    displayResult.value = ''
+})
+
+
 displayNumbers.addEventListener("keypress", (event) => {
     event.preventDefault()
 })
